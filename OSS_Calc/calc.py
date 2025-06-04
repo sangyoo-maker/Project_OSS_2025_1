@@ -40,7 +40,7 @@ class Calculator:
         elif char == '=':
             try:
                 expr=self.expression.replace('mod','%')
-                self.expression = str(eval(self.expression))
+                self.expression = str(eval(expr))
             except ZeroDivisionError: #0으로 나눌 시 에러코드 표시
                 self.expression='0으로 나눌 수 없어요'
             except Exception:
