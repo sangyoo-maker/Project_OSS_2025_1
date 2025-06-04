@@ -19,7 +19,7 @@ class Calculator:
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
             ['0', '.', 'C', '+'],
-            ['mod','=']
+            ['mod','%','=']
         ]
 
         for row in buttons:
@@ -39,8 +39,9 @@ class Calculator:
             self.expression = ""
         elif char == '=':
             try:
-                expr=self.expression.replace('mod','%')
-                self.expression = str(eval(expr))
+                per=self.expression.replace('%','*0.01')
+                per=per.replace('mod','%')
+                self.expression = str(eval(per))
             except ZeroDivisionError: #0으로 나눌 시 에러코드 표시
                 self.expression='0으로 나눌 수 없어요'
             except Exception:
