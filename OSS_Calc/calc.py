@@ -19,7 +19,7 @@ class Calculator:
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
             ['0', '.', 'C', '+'],
-            ['=']
+            ['mod','=']
         ]
 
         for row in buttons:
@@ -39,7 +39,8 @@ class Calculator:
             self.expression = ""
         elif char == '=':
             try:
-                self.expression = str(eval(self.expression))
+                expr=self.expression.replace('mod','%')
+                self.expression = str(eval(expr))
             except Exception:
                 self.expression = "에러"
         else:
