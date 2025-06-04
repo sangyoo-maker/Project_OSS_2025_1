@@ -5,7 +5,7 @@ class Calculator:
     def __init__(self, root):
         self.root = root
         self.root.title("계산기")
-        self.root.geometry("300x400")
+        self.root.geometry("400x500")
 
         self.expression = ""
 
@@ -19,7 +19,7 @@ class Calculator:
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
             ['0', '.', 'C', '+'],
-            ['=']
+            ['mod','=']
         ]
 
         for row in buttons:
@@ -39,9 +39,17 @@ class Calculator:
             self.expression = ""
         elif char == '=':
             try:
+                expr=self.expression.replace('mod','%')
                 self.expression = str(eval(self.expression))
+            except ZeroDivisionError: #0으로 나눌 시 에러코드 표시
+                self.expression='0으로 나눌 수 없어요'
             except Exception:
-                self.expression = "에러"
+                if self.expression and self.expression[-1] in ('/','*','-','+','d'):#수식으로 끝날 시 에러코드 표시
+                    self.expression="에러:완성되지 않은 수식"
+                elif self.expression=='':
+                    self.expression=''
+                else:
+                    self.expression = "에러"
         else:
             self.expression += str(char)
 
