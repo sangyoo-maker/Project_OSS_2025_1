@@ -44,11 +44,6 @@ class Calculator:
             except ZeroDivisionError: #0으로 나눌 시 에러코드 표시
                 self.expression='0으로 나눌 수 없어요'
             except Exception:
-                if self.expression and self.expression[-1] in ('/','*','-','+','d'):#수식으로 끝날 시 에러코드 표시시
-                    self.expression="에러:완성되지 않은 수식"
-                elif self.expression=='':
-                    self.expression=''
-                else:
                     self.expression = "에러"
         else:
             self.expression += str(char)
